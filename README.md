@@ -6,7 +6,7 @@ A simpler way use blocks safely.
 ### Example: Fill self.label.text with the text of google.com
 
 ```objective-c
-    [[CB weak:self parameter:nil background:^id(CB *cb, id object) {
+    [[CB weak:self background:^id(CB *cb) {
         
         return [NSString stringWithContentsOfURL:[NSURL URLWithString:@"google.com"]
                                         encoding:NSUTF8StringEncoding
