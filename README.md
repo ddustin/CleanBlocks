@@ -35,7 +35,7 @@ And enjoy! Check out more complicated examples that are supported.
 ### Chain multiple foreground and background calls together
 
 ```objective-c
-    [[[[CB weak:self parameter:self.query1nil background:^id(CB *cb, id object) {
+    [[[[CB weak:self parameter:self.query1 background:^id(CB *cb, id object) {
         
         return [Server.shared myLongRunningFunction:object];
         
