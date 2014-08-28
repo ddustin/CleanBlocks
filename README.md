@@ -1,9 +1,9 @@
 CleanBlocks
 ===========
 
-A simpler way use blocks safely.
+A simpler way use blocks safely. CleanBlocks also keeps code flow in a visually apparently order that avoids excessive indentation while working well with Xcode's autocompletion.
 
-### Example: Fill self.label.text with the text of google.com
+### Fill self.label.text with the text of google.com
 
 ```objective-c
     [[CB weak:self background:^id(CB *cb) {
@@ -30,7 +30,7 @@ To install:
 
 And enjoy! Check out more complicated examples that are supported.
 
-### Example: Chain multiple foreground and background calls together
+### Chain multiple foreground and background calls together
 
 ```objective-c
     [[[[CB weak:self parameter:self.query1nil background:^id(CB *cb, id object) {
@@ -53,7 +53,7 @@ And enjoy! Check out more complicated examples that are supported.
     }];
 ```
 
-### Example: Manually handle weakSelf and strongSelf reference for use with legacy syntax
+### Manually handle weakSelf and strongSelf reference for use with legacy syntax
 
 Sometimes you need to use an api with a block callback but you still want to handle self safely.
 
