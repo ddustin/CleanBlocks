@@ -77,6 +77,14 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
     return cb;
 }
 
++ (instancetype)weak:(__weak id)weakSelf background:(id (^)(CB *))block
+{
+    return [self weak:weakSelf parameter:nil background:^id(CB *cb, id object) {
+        
+        return block(cb);
+    }];
+}
+
 - (CB*)background:(void(^)(CB *cb, id result))block
 {
     CBEvent *event = [CBEvent new];

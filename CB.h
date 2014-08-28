@@ -15,6 +15,8 @@ typedef void (^CBCallbackType)(id result);
 @property (weak) id weakSelf;
 @property (strong) id strongSelf; // Set to the value of weakSelf before block calls and nil'ed afterwards
 
++ (instancetype)weak:(__weak id)weakSelf background:(id(^)(CB *cb))block;
+
 + (instancetype)weak:(__weak id)weakSelf parameter:(id)object background:(id(^)(CB *cb, id object))block;
 
 - (CB*)background:(void(^)(CB *cb, id result))block;
