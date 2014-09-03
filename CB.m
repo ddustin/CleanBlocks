@@ -69,6 +69,28 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
     });
 }
 
++ (instancetype)weak:(__weak id)weakSelf after:(double)delay foreground:(void(^)(CB *cb))block
+{
+    CB *cb = [CB new];
+    
+    cb.weakSelf = weakSelf;
+    cb.events = [NSMutableArray array];
+    
+    CBEvent *event = [CBEvent new];
+    
+    event.block = block;
+    event.queue = dispatch_get_main_queue();
+    
+    dispatch_time_t timeVar = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    
+    dispatch_after(timeVar, dispatch_get_main_queue(), ^{
+        
+        [cb fire:event result:nil];
+    });
+    
+    return cb;
+}
+
 + (instancetype)weak:(__weak id)weakSelf parameter:(id)object background:(id(^)(CB *cb, id object))block
 {
     CB *cb = [CB new];

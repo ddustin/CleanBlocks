@@ -15,6 +15,7 @@
 
 + (instancetype)weak:(__weak id)weakSelf background:(id(^)(CB *cb))block;
 + (instancetype)weak:(__weak id)weakSelf parameter:(id)object background:(id(^)(CB *cb, id object))block;
++ (instancetype)weak:(__weak id)weakSelf after:(double)delay foreground:(void(^)(CB *cb))block;
 
 // StrongSelf will be nil when background events are called
 - (CB*)background:(void(^)(CB *cb, id result))block;
