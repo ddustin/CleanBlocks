@@ -13,21 +13,25 @@ typedef void (^CBCallbackType)(id result);
 @interface CB : NSObject
 
 @property (weak) id weakSelf;
-@property (strong) id strongSelf; // Set to the value of weakSelf before block calls and nil'ed afterwards
+@property (strong) id strongSelf; // Set to the value of weakSelf before foreground calls and nil'ed afterwards
 
 + (instancetype)weak:(__weak id)weakSelf background:(id(^)(CB *cb))block;
 
 + (instancetype)weak:(__weak id)weakSelf parameter:(id)object background:(id(^)(CB *cb, id object))block;
 
+// StrongSelf will be nil when background events are called
 - (CB*)background:(void(^)(CB *cb, id result))block;
 - (CB*)backgroundChain:(id(^)(CB *cb, id result))block;
 
-// Foreground events will not fire if weakSelf is nil / released.
+// Before foreground events are called, strongSelf is assigned to the value of
+// weak self. If that is nil, the foreground event is not called.
+// After the call finishes, strongSelf will be set to nil again.
 - (CB*)foreground:(void(^)(CB *cb, id result))block;
 - (CB*)foregroundChain:(id(^)(CB *cb, id result))block;
 
 @end
 
+// Helper macro to access strongSelf in the foreground.
 #define CBSELF ((typeof(self))cb.strongSelf)
 
 // For use with legacy block block callback methods

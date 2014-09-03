@@ -36,10 +36,12 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
         
         id result = nil;
         
-        self.strongSelf = self.weakSelf;
-        
-        if(!self.strongSelf)
-            return;
+        if(event.queue == dispatch_get_main_queue()) {
+            self.strongSelf = self.weakSelf;
+            
+            if(!self.strongSelf)
+                return;
+        }
         
         if(event.chain)
             result = ((CBCallbackBlockChain)event.block)(self, parameter);
