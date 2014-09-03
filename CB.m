@@ -24,6 +24,9 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
 
 @interface CB ()
 
+@property (weak, readwrite) id weakSelf;
+@property (strong, readwrite) id strongSelf;
+
 @property (strong) NSMutableArray *events;
 
 @end
@@ -37,16 +40,21 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
         id result = nil;
         
         if(event.queue == dispatch_get_main_queue()) {
+            
             self.strongSelf = self.weakSelf;
             
             if(!self.strongSelf)
                 return;
         }
         
-        if(event.chain)
+        if(event.chain) {
+            
             result = ((CBCallbackBlockChain)event.block)(self, parameter);
-        else
+        }
+        else {
+            
             ((CBCallbackBlock)event.block)(self, parameter);
+        }
         
         self.strongSelf = nil;
         
@@ -129,7 +137,7 @@ typedef id (^CBCallbackBlockChain)(CB *cb, id result);
     CBEvent *event = [CBEvent new];
     
     event.block = block;
-    event.queue = dispatch_get_global_queue(0, 0);
+    event.queue = dispatch_get_main_queue();
     event.chain = YES;
     
     [self.events addObject:event];

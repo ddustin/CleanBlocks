@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^CBCallbackType)(id result);
-
 @interface CB : NSObject
 
-@property (weak) id weakSelf;
-@property (strong) id strongSelf; // Set to the value of weakSelf before foreground calls and nil'ed afterwards
+@property (weak, readonly) id weakSelf;
+@property (strong, readonly) id strongSelf; // Set to the value of weakSelf before foreground calls and nil'ed afterwards
 
 + (instancetype)weak:(__weak id)weakSelf background:(id(^)(CB *cb))block;
-
 + (instancetype)weak:(__weak id)weakSelf parameter:(id)object background:(id(^)(CB *cb, id object))block;
 
 // StrongSelf will be nil when background events are called
