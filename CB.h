@@ -1,6 +1,6 @@
 //
 //  CB.h
-//  Furniture
+//  CleanBlocks
 //
 //  Created by Dustin Dettmer on 8/27/14.
 //  Copyright (c) 2014 Dustin Dettmer. All rights reserved.
