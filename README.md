@@ -24,8 +24,8 @@ CB will keep a weak reference to self. Before calling the foreground block it wi
 
 To install:
 - Drag CB.h and CB.m to your Project Manager tap (on the left)
-- Make sure "Copy items into destination group's folder is checkmarked
-- Modify &lt;Project Name&gt;-Prefix.pch to have this line"
+- Make sure "Copy items into destination group's folder" is checkmarked
+- Modify &lt;Project Name&gt;-Prefix.pch to have this line
 ```objective-c
 #import "CB.h"
 ```
