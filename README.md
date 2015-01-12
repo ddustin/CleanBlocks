@@ -3,7 +3,7 @@ CleanBlocks
 
 A simpler way use blocks safely.
 
-CleanBlocks also keeps code flow in a visually apparently order that avoids excessive indentation while working well with Xcode's autocompletion.
+CleanBlocks also keeps code in a more visually apparent flow that avoids excessive indentation while working well with Xcode's autocompletion.
 
 ### Fill self.label.text with the text of google.com
 
